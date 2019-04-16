@@ -103,7 +103,7 @@
       <script type="text/javascript">
          var userList = document.getElementById('userList');
          
-         var mirrorVal = window.localStorage.CameraMirror == 'true';
+         var mirrorVal = window.localStorage.CameraMirror != 'false';
          var camera = window.localStorage.Camera == '1' ? 1 : 0;
          
          var scanner = new Instascan.Scanner({ 
@@ -446,7 +446,7 @@
          text-transform: uppercase;
          }
          .cols{
-             max-width: 350px;
+             width: 350px;
              margi: 5px;
              float:left;
              text-align:center;
