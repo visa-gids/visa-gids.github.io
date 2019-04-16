@@ -32,11 +32,12 @@
       <section class='cnt align-center'>
          <div class='view view-qr-scan'>
             
+            <h2>Access your QR code in 2 Steps</h2>
             <div class='cols'>
-                <h2>Access your QR code in 2 Steps</h2>
-                <img src='qr-steps.jpg'/>
+                <img style='width:330px;' src='qr-steps.jpg'/>
             </div>
             <div class='cols'>
+                <br/>
                 <button class="button primary" onclick="navToManualEnterPage()" type="button" >Do not have linked App? Click here</button>
             </div>
             <br class='cb'>
@@ -273,7 +274,6 @@
             window.scrollTo(0, 1);
             }, 0);
           });
-
           function setCount(){
               var count = getListFromLS().length;
               $('#count').html('Count : '+count);
