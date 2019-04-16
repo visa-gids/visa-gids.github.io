@@ -33,14 +33,12 @@
          <div class='view view-qr-scan'>
             <h1>Scan your Linked in QR code</h1>
             <h2>Steps:</h2>
-            <ul>
-               <li>Open Linked in App</li>
-               <li>Find QR code</li>
-               <li>Scan QR</li>
-            </ul>
-            <video id="preview" playsinline></video>
+            <img src='qr-steps.jpg'/><br />
+            <div style='text-align: center;'>
+                <video id="preview" playsinline></video>
+            </div>
             <br /><br />
-            <button class="button primary" onclick="navToManualEnterPage()" type="button" >Do not have linked App? Click here to enter you details manually</button>
+            <button class="button primary" onclick="navToManualEnterPage()" type="button" >Do not have linked App? Click here</button>
          </div>
          <div class='view view-qr-email-phone'>
             <h1>Your Linkedin profile is captured !!</h1>
@@ -100,7 +98,7 @@
          var mirrorVal = window.localStorage.CameraMirror == 'true';
          var camera = window.localStorage.Camera == '1' ? 1 : 0;
          
-         let scanner = new Instascan.Scanner({ 
+         var scanner = new Instascan.Scanner({ 
                                                  video: document.getElementById('preview'),
                                                  mirror: mirrorVal
                                              });
