@@ -31,14 +31,19 @@
       </header>
       <section class='cnt align-center'>
          <div class='view view-qr-scan'>
-            <h1>Scan your Linked in QR code</h1>
-            <h2>Steps:</h2>
-            <img src='qr-steps.jpg'/><br />
+            
+            <div class='cols'>
+                <h2>Access your QR code in 2 Steps</h2>
+                <img src='qr-steps.jpg'/>
+            </div>
+            <div class='cols'>
+                <button class="button primary" onclick="navToManualEnterPage()" type="button" >Do not have linked App? Click here</button>
+            </div>
+            <br class='cb'>
             <div style='text-align: center;'>
                 <video id="preview" playsinline></video>
             </div>
             <br /><br />
-            <button class="button primary" onclick="navToManualEnterPage()" type="button" >Do not have linked App? Click here</button>
          </div>
          <div class='view view-qr-email-phone'>
             <h1>Your Linkedin profile is captured !!</h1>
@@ -91,6 +96,8 @@
             <button class="button primary" onclick="downloadCsv()" type="button" >Download as CSV</button>
             <ul id='userList'></ul>
          </div>
+
+         <p id='count'></p>
       </section>
       <script type="text/javascript">
          var userList = document.getElementById('userList');
@@ -180,6 +187,7 @@
            $('.view').hide()
            $('.view-qr-scan').show();
            window.linkedinUrl = '';
+           setCount();
          }
          
          function naveToAdmin() {
@@ -251,6 +259,7 @@
          
              });
              navToQRPage()
+             setCount();
              succesMsgOnsaveDetails();
              return;
            }
@@ -264,6 +273,11 @@
             window.scrollTo(0, 1);
             }, 0);
           });
+
+          function setCount(){
+              var count = getListFromLS().length;
+              $('#count').html('Count : '+count);
+          }
          
           function addMetaForURLBarTheme(name,content) {
             var themeMetatag=document.createElement('meta');
@@ -430,6 +444,14 @@
          font-size: 14px;
          font-weight: normal;
          text-transform: uppercase;
+         }
+         .cols{
+             max-width: 350px;
+             margi: 5px;
+             float:left;
+         }
+         .cb{
+             clear:both
          }
       </style>
    </body>
