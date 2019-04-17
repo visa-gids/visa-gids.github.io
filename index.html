@@ -31,18 +31,19 @@
       </header>
       <section class='cnt align-center'>
          <div class='view view-qr-scan'>
-            
-            <h2>Access your QR code in 2 Steps</h2>
-            <div class='cols'>
-                <img style='width:330px;' src='qr-steps.jpg'/>
+           <div class='cols'>
+              <h1>Careers at Visa</h1>
+                <p>Simple steps to Sign up for job alerts to get notified of open positions at Visa!            </p>
+              <video id="preview" playsinline></video>
+              <br/><br/>
+              <button class="button primary" style="width:320px" onclick="navToManualEnterPage()" type="button" >Do not have linked App? <br /> Click here</button>
             </div>
-            <div class='cols'>
-                <br/><br/>
-                <button class="button primary" onclick="navToManualEnterPage()" type="button" >Do not have linked App? <br /> Click here</button>
+            <div class='cols' style="text-align:right">
+                <img style='width:330px;' src='qr-steps.png'/>
             </div>
             <br class='cb'>
             <div style='text-align: center;'>
-                <video id="preview" playsinline></video>
+                
             </div>
             <br /><br />
          </div>
@@ -56,7 +57,7 @@
                </div>
                <div class="ffl-wrapper">
                   <label for="phone1" class="ffl-label">Mobile Number (10 digit)</label>
-                  <input type="number" max="10000000000" required id="phone1" name="phone1">
+                  <input type="text" maxlength="10" required id="phone1" name="phone1">
                </div>
                <br/>
                <button class="button primary" type="submit" >Submit</button>
@@ -64,7 +65,7 @@
             </form>
          </div>
          <div class='view view-manual-entry'>
-            <h1>Enter Details Mannually</h1>
+            <h1>Enter Your Details</h1>
             <form onsubmit="saveManualEntry()" action='#'>
                <div class="ffl-wrapper">
                   <label for="name" class="ffl-label">Name</label>
@@ -115,13 +116,15 @@
            if (window.linkedinUrl) {
              return;
            }
-           if(content.indexOf('https://www.linkedin.com/') == 0){ // if linked in url
+           if(content.indexOf('linkedin.com') >= 0){ // if linked in url
              //var elm = document.createElement('li');
              //elm.innerHTML = '<a href="' + content + '" target="_blank">' + content + '</a>';
              //userList.appendChild(elm);
              //addToLS(content);
              window.linkedinUrl = content;
              openEnterQREmailPhonePage();
+           }else{
+             alert('Error: Unsupported QR code. Please scan your LinkeIn QR code');
            }
          });
          Instascan.Camera.getCameras().then(function (cameras) {
@@ -238,6 +241,8 @@
          function succesMsgOnsaveDetails() {
             setTimeout(function(){
                alert('Thank you for the information, we look forward to meet you again soon!');
+               $('form').trigger('reset')
+                $('form input, form textarea').trigger('blur')
             },1000);
            
          }
@@ -293,6 +298,13 @@
             addMetaForURLBarTheme("apple-mobile-web-app-status-bar-style",themeColor);
           }
           updateUrlBarColor();
+
+          $('#phone1,#phone2').keydown(function(e){
+            var _this = this;
+            setTimeout(function(){
+              $(_this).val($(_this).val().replace(/\D/g, ""))
+            },300)
+          })
          
          navToQRPage();
       </script>
@@ -307,7 +319,9 @@
          h1 {
          color: #1E237E;
          font-size: 30px;
-         font-weight: 300; }
+         font-weight: 300;
+         margin: 7px 0;
+          }
          h2 {
          font-size: 24px;
          color: #003EA9;
@@ -317,7 +331,9 @@
          font-size: 18px;
          font-weight: 600; }
          p {
-         font-size: 14px; }
+         font-size: 14px;
+         line-height: 22px;
+          }
          .header {
          overflow: hidden;
          background-color: #15195A;
@@ -335,6 +351,9 @@
          height: 40px;
          background: #eee;
          margin: 12px;
+         }
+         #preview{
+           max-width: 320px; 
          }
          body,
          HTML {
@@ -449,7 +468,6 @@
              width: 350px;
              margi: 5px;
              float:left;
-             text-align:center;
          }
          .cb{
              clear:both
